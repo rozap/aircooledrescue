@@ -1,0 +1,7 @@
+Hi there {{username}}, thanks for registering at Aircooled Rescue.
+
+You can activate your account by going to the following link http://www.aircooledrescue.com/activate/{{key}}
+
+Once you log in, click on the top right menu item with the text "Logged in as {{username}}" and select "Profile". From there, you can edit your information, such as help you can offer, your address, phone number, etc. Please take a minute to update your profile, and move your map marker to the correct location. When you first create an account, your marker is placed at latitude 0, and longitude 0, which is in the middle of the ocean. Unless that's actually where you live, it's not very helpful :)
+
+Cheers!

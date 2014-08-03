@@ -1,0 +1,109 @@
+{% load compress %}
+
+<!DOCTYPE HTML>
+<html>
+<head>
+<link rel='icon' href='{{STATIC_URL}}img/favicon.png' type='image/png' />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="csrf_token" content="{{ csrf_token }}">
+<title>{% block title %}{% endblock %}</title>
+
+
+	<link rel="stylesheet" href="{{ STATIC_URL }}style.css" />
+    {% block css %}{% endblock %}
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/libs/underscore-min.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/libs/backbone-min.js"></script>
+
+
+
+    <script type="text/javascript" src="{{ STATIC_URL }}js/libs/jquery.ba-serializeobject.js"></script>
+    <script src="{{ STATIC_URL }}js/libs/json2.js" type="text/javascript"></script>
+    <script src="{{ STATIC_URL }}js/libs/bootstrap.js" type="text/javascript"></script>
+    <script src="{{ STATIC_URL }}js/libs/moment.js" type="text/javascript"></script>
+    <script src="{{ STATIC_URL }}js/core/core.js" type="text/javascript"></script>
+
+	<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyD63j6rFiV7jvifpnbFIywkrJwpR9bVBYw&sensor=false"></script>
+	<script src="{{ STATIC_URL }}js/libs/markerclusterer.js" type="text/javascript"></script>
+
+    {% block javascript %}{% endblock %}
+
+</head>
+<body>
+	<div class="navbar-top navbar">
+		<div class="navbar-inner">
+			<div class="container">
+						<a class="brand" href="{% block home %}{% endblock %}">
+							<img src="/static/img/title_bus.png"/>
+						</a>
+				<ul class="nav pull-right">
+					{% block navs %}
+					<li>
+						<a href="/about">About</a>
+					</li>
+					<li class="divider-vertical"></li>
+					<li>
+						{% if user.is_authenticated %}
+						<li class="dropdown">
+							<a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">
+								Logged in as {{ user.username }}
+								<b class="caret"></b>
+							</a>
+						
+							<ul class="dropdown-menu">
+								<li><a href="#profile/{{person.id}}">Profile</a></li>
+						    	<li><a href="/logout">Logout</a></li>
+						    </ul>
+					    </li>
+						{% else %}
+							<a href="#logreg" >Login or Register</a>
+						{% endif %}
+					</li>
+					{% endblock %}
+				</ul>
+			</div>
+		</div>
+	</div>
+	
+	{% block content %}
+
+	{% endblock %}
+
+	<div class="modal hide fade" id="login-modal">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			<h3>Login or Register</h3>
+		</div>
+		<div class="modal-body">
+			<div class="row-fluid">
+				<div class="span6">
+					{% include "forms/login.html" %}
+				</div>
+				<div class="span6">
+					{% include "forms/register.html" %}
+				</div>
+			</div>
+		</div>
+		<div class="modal-footer">
+			<div class="row-fluid">
+				<div class="span6">
+					<div class="control-group">
+						<a href="javascript:void(0)" id="login-btn" class="btn btn-mini btn-primary pull-left">
+							Login
+						</a>
+					</div>
+				</div>
+				<div class="span6">
+					<div class="control-group">
+						<a href="javascript:void(0)" id="register-btn" class="btn btn-mini btn-primary pull-left">
+							Register
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+</body>
+</html>

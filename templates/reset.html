@@ -1,0 +1,47 @@
+{% extends "core.html" %}
+
+{% block title %}
+	Retrieve Password
+{% endblock %}
+
+
+{% block home %}/{% endblock %}
+
+{% block navs %}
+
+
+{% endblock %}
+
+
+
+{% block javascript %}
+<script type="text/javascript">
+$(document).ready(function() {
+	$('#submit-btn').click(function() {
+		if(!$(this).hasClass('disabled')) {
+			var data = $('#reset').serialize(true);
+			$('#submit-btn').addClass('disabled');
+			$.post('', data).success(function(resp) {
+				$('#password-form').html(resp);
+			}).error(function(resp) {
+				$('#password-form').html(resp.responseText);
+				$('#submit-btn').removeClass('disabled');
+			});
+		}
+	});
+});
+
+</script>
+{% endblock %}
+
+{% block content %}
+<div class="container full">
+	<div class="row">
+		<div id="password-form">
+			{% include "forms/reset_password_form.html" %}
+		</div>
+		<a class="btn btn-primary" id="submit-btn">Submit</a>
+
+	</div>
+</div>
+{% endblock %}

@@ -1,0 +1,72 @@
+<h6>Register</h6>
+<form id="register">
+
+	{% csrf_token %}
+
+	{% if register.non_field_errors %}
+		<div class="alert alert-error">
+		{% for e in register.non_field_errors %}
+			{{e}}
+		{% endfor %}
+		</div>
+	{% endif %}
+
+
+	<div class="control-group">
+
+		{% if register.username.errors %}
+			<div class="alert alert-error">
+			{% for e in register.username.errors %}
+				{{e}}
+			{% endfor %}
+			</div>
+		{% endif %}
+		<label class="control-label" for="id_username">Username</label>
+
+		{{ register.username }}
+	</div>
+	<div class="control-group">
+
+		{% if register.email.errors %}
+			<div class="alert alert-error">
+			{% for e in register.email.errors %}
+				{{e}}
+			{% endfor %}
+			</div>
+		{% endif %}
+		<label class="control-label" for="id_email">Email</label>
+
+		{{ register.email }}
+	</div>
+	<div class="control-group">
+
+		{% if register.password.errors %}
+			<div class="alert alert-error">
+			{% for e in register.password.errors %}
+				{{e}}
+			{% endfor %}
+			</div>
+		{% endif %}
+		<label class="control-label" for="id_password">Password</label>
+		{{ register.password }}
+	</div>
+	<div class="control-group">
+
+		{% if register.password2.errors %}
+			<div class="alert alert-error">
+			{% for e in register.password2.errors %}
+				{{e}}
+			{% endfor %}
+			</div>
+		{% endif %}
+		<label class="control-label" for="id_password2">Confirm Password</label>
+		{{ register.password2 }}
+	</div>
+
+	{% if register.success %}
+	<div class="alert alert-success">
+		Your account has been created. You should receive an email shortly with an activation link.
+	</div>
+	{% endif %}
+
+</form>

@@ -1,0 +1,114 @@
+<script id="person-view" type="text/html">
+	<div class="person-view">
+		<div class="row-fluid">
+			<h3><%= name %>
+			<h6>(Username: <%= username? username : 'No Username' %>)
+			<h6>Phone: <%= phone %></h6>
+			<h6>Email: <%= email.length > 4 ? email : 'None' %></h6>
+			<h6>Favorite Beer: <%= beer.length > 4 ? beer : 'None' %> </h6>
+		</div>
+		<div class="row-fluid">
+			<% if(ok_contact == 2) { %>
+				<span class="label label-success">Contact me whenever</span>
+			<% } else if(ok_contact == 1) { %>
+				<span class="label label-info">Contact if you need help</span>
+			<% } else if(ok_contact == 0) { %>
+				<span class="label label-important">Contact only in an emergency</span>
+			<% } %>
+			<% if(verified) { %>
+				<span class="label label-success">Verified</span>
+			<% } else { %>
+				<span class="label label-warning">Not Verified</span>
+			<% } %>
+		</div>
+
+		<div class="divider"></div>
+
+		<table class="table table-hover table-condensed">
+			<thead>
+				<tr>
+					<th>I am able to help you with</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<% for(s in services) { %>
+					<tr>
+						<td><%= services[s].name %></td>
+						<td></td>
+					</tr>
+
+				<% } %>
+				
+			</tbody>
+		</table>
+		<div class="divider"></div>
+		<div class="row-fluid">
+			<h6>About <%= name %></h6>
+			<%= description %>
+		</div>
+		<div class="divider"></div>
+		<div class="row-fluid">
+			<a href="javascript:void(0)"
+				class="btn btn-mini btn-info"
+				id="karma-btn"
+				title="Has this person helped you out?">
+				Give Karma
+			</a>
+
+
+			<a href="javascript:void(0)"
+				class="btn btn-mini btn-danger"
+				id="flag-btn"
+				title="Did you receive no response from the listed contact info?">
+				Flag Contact Info
+			</a>
+
+			<div class="row-fluid person-action" id="karma-form" style="display:none;">
+				<br>
+				<textarea id="karma-text" class="span12" rows="5" placeholder="How'd <%= name %> help you out?"></textarea>
+				<a href="javascript:void(0)" class="btn btn-mini btn-primary" id="submit-karma">Submit</a>
+				<a href="javascript:void(0)" class="btn btn-mini cancel-person-action">
+					Cancel
+				</a>
+			</div>
+			<div class="row-fluid person-action" id="flag-form" style="display:none;">
+				<br>
+				<textarea id="flag-text" class="span12" rows="5" placeholder="Describe what happened."></textarea>
+				<a href="javascript:void(0)" class="btn btn-mini btn-primary" id="submit-flag">Submit</a>
+				<a href="javascript:void(0)" class="btn btn-mini cancel-person-action">
+					Cancel
+				</a>
+			</div>
+		</div>
+		<div class="divider"></div>
+		<div class="interaction-list">
+			<div id="karma-list">
+				<% for(k in karma) { %>
+					<div class="interaction-item karma-item">
+						<p><%= karma[k].description %></p>
+						<small>From 
+							<a href="/#show/<%= karma[k].creator %>"><%= karma[k].creator_name %></a> on
+							<%= moment(karma[k].date).format('MMMM Do, YYYY') %>
+						</small>
+					</div>
+					<div class="interaction-sep"></div>
+
+				<% } %>
+			</div>
+			<div id="flags-list">
+				<% for(f in flags) { %>
+					<div class="interaction-item flag-item">
+						<p><%= flags[f].description %></p>
+						<small>From 
+							<a href="/#show/<%= flags[f].creator %>"><%= flags[f].creator_name %></a> on
+							<%= moment(flags[f].date).format('MMMM Do, YYYY') %>
+						</small>
+					</div>
+					<div class="interaction-sep"></div>
+
+				<% } %>
+			</div>
+		</div>
+	</div>
+</script>

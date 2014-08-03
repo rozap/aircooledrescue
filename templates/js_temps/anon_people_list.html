@@ -1,0 +1,16 @@
+
+
+<script id="people-list-view" type="text/html">
+<div id="people-list">
+		<ul class="nav">
+		<% for(p in people) { %>
+			<li>
+				<a href="#show/<%= people[p].id %>">
+					<%= /([^ ]+)/.exec(people[p].name)? /([^ ]+)/.exec(people[p].name)[0] : 'None' %>
+				</a>
+			</li>
+		<% } %>
+		</ul>
+</div>
+	
+</script>

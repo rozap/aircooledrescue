@@ -1,0 +1,130 @@
+<script id="profile-view" type="text/html">
+	<div class="person-view">
+		<div class="row-fluid save">
+			<a href="javascript:void(0)" class="btn btn-primary disabled save-btn">
+				Save
+			</a>
+			<div class="divider-min"></div>
+		</div>
+		<div class="row-fluid">
+			<h6>Vital Info</h6>
+			<div class="input-prepend">
+				<span class="add-on">
+					Your Name
+				</span>
+				<input class="saveable" type="text" id="name" value="<%= person.name.length > 1? person.name : '' %>"
+					placeholder="<%= person.name.length > 1 ? '' : 'No name set yet!' %>"></input>			
+			</div>
+			<% if(person.errors && person.errors.phone) { %>
+				<div class="alert alert-error">
+					<%= person.errors.phone %>
+				</div>
+			<% } %>
+			<div class="input-prepend">
+				<span class="add-on">
+					Phone
+				</span>
+				<input class="saveable" type="text" id="phone" value="<%= person.phone.length > 1? person.phone : '' %>"
+					placeholder="<%= person.phone.length > 1 ? '' : 'No phone number set yet!' %>"></input>			
+			</div>
+			<% if(person.errors && person.errors.email) { %>
+				<div class="alert alert-error">
+					<%= person.errors.email %>
+				</div>
+			<% } %>
+			<div class="input-prepend">
+				<span class="add-on">
+					Email
+				</span>
+				<input class="saveable" type="text" id="email" value="<%= person.email.length > 1? person.email : '' %>"
+					placeholder="<%= person.email.length > 1 ? '' : 'No email set yet!' %>"></input>	
+			</div>
+			<div class="input-prepend">
+				<span class="add-on">
+					Beer
+				</span>
+				<input class="saveable" type="text" id="beer" value="<%= person.beer.length > 1? person.beer : '' %>"
+					placeholder="<%= person.beer.length > 1 ? '' : 'No favorite beer set yet!' %>"></input>
+			</div>
+		</div>
+		<div class="divider"></div>
+		<small>Click and drag the pin to change your location. You may prefer to use an approximate location for privacy reasons.</small>
+		<div class="divider"></div>
+		<h6>You can contact me when...</h6>
+		<div class="row-fluid">
+				<a href="javascript:void(0)" class="label label-success label-pressable label-pressable-success <%= person.ok_contact == 2? 'active' : '' %>" data-val="2">
+						Contact me whenever
+				</a>
+				<br>
+				<a href="javascript:void(0)" class="label label-info label-pressable label-pressable-info <%= person.ok_contact == 1? 'active' : '' %>" data-val="1">
+					Contact if you need help
+				</a>
+				<br>
+				<a href="javascript:void(0)" class="label label-important label-pressable label-pressable-important
+						<%= person.ok_contact == 0? 'active' : '' %>" data-val="0">
+						Contact only in an emergency
+				</a>
+		</div>
+		<div class="divider"></div>
+		<div class="row-fluid">
+			<table class="table table-hover table-condensed">
+				<thead>
+					<tr>
+						<th>I am able to help you with</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<% for(s in person.services) { %>
+						<tr>
+							<td>
+								<%= person.services[s].name %> 
+							</td>
+							<td>
+								<a href="javascript:void(0)"
+									class="removeService"
+									data-service="<%= person.services[s].name %>"
+								>
+									<i class="icon-trash"></i>
+								</a>
+							</td>
+
+					<% } %>	
+
+				</tbody>
+			</table>
+		</div>
+		<div class="row-fluid">
+			<div class="span8">
+				<select id="add-service-select" class="span11">
+
+				<% for(s in services) { %>
+					<option><%= services[s].name %></option>
+				<% } %>
+				</select>
+			</div>
+			<div class="span1">
+			<a href="javascript:void(0)"
+				id="add-service-btn"
+				style="margin-top:5px"
+				class="btn btn-primary btn-mini">
+				Add
+			</a>
+
+			</div>
+		</div>
+		<div class="divider"></div>
+		<h6>Description</h6>
+		<div class="row-fluid">
+			<textarea rows="5"
+			 placeholder="Any extra information that would be helpful, such as years and models of vehicles that you are most familiar with." 
+			 class="span12 saveable" id="description"
+			><%= person.description %></textarea>
+
+		</div>
+		<div class="divider"></div>
+		<a href="javascript:void(0)" class="btn btn-primary disabled save-btn">
+			Save
+		</a>
+	</div>
+</script>

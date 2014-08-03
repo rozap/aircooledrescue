@@ -1,0 +1,13 @@
+<script id="people-list-view" type="text/html">
+<div id="people-list">
+	<ul class="nav">
+	<% for(p in people) { %>
+		<li>
+			<a href="#show/<%= people[p].id %>">
+				<%= people[p].name %>
+			</a>
+		</li>
+	<% } %>
+	</ul>
+</div>
+</script>

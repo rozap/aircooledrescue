@@ -1,0 +1,44 @@
+<h6>Login</h6>
+<form id="login">
+
+	{% csrf_token %}
+
+	{% if login.non_field_errors %}
+		<div class="alert alert-error">
+		{% for e in login.non_field_errors %}
+			{{e}}
+		{% endfor %}
+		</div>
+	{% endif %}
+
+	<div class="control-group">
+		{% if login.username.errors %}
+			<div class="alert alert-error">
+			{% for e in login.username.errors %}
+				{{e}}
+			{% endfor %}
+			</div>
+		{% endif %}
+		<label class="control-label" for="id_username">Username</label>
+		{{ login.username }}
+	</div>
+	<div class="control-group">
+		{% if login.password.errors %}
+			<div class="alert alert-error">
+			{% for e in login.password.errors %}
+				{{e}}
+			{% endfor %}
+			</div>
+		{% endif %}
+		<label class="control-label" for="id_password">Password</label>
+		{{ login.password }}
+	</div>
+
+	<a class="small" href="/retrieve">Forgot your password?</a>
+
+	{% if success %}
+	<div class="alert alert-success">
+		Just a second...redirecting you.
+	</div>
+	{% endif %}
+</form>

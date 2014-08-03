@@ -1,0 +1,68 @@
+{% extends "core.html" %}
+
+{% block javascript %}
+{% if user.is_authenticated %} 
+	{% include "js_temps/auth_person.html" %}
+	{% include "js_temps/auth_people_list.html" %}
+	{% include "js_temps/profile_view.html" %}
+{% else %}
+	{% include "js_temps/anon_person.html" %}
+	{% include "js_temps/anon_people_list.html" %}
+{% endif %}
+
+<script src="{{ STATIC_URL }}js/core/home.js" type="text/javascript"></script>
+{% endblock %}
+
+{% block home %}#{% endblock %}
+
+
+{% block content %}
+<div class="container-fluid full">
+	{% if user.is_authenticated and person.lat == 0 and person.lng == 0 %}
+		<div class="row-fluid">
+			<div class="alert alert-error alert-block">
+				Hi there, thanks for registering. Please take a moment to edit your profile. To do so, go to the top right of the page, and click on the link where it says "Logged in as {{ user.username }}". Then select "Profile". From there, you can enter your information, such as phone number, favorite beer, and your location. Make sure to drag and drop the red pin on your location!
+			</div>
+
+		</div>
+	{% endif %}
+	{% if not user.is_authenticated %}
+		<div class="row-fluid">
+			<div class="alert alert-success alert-block">
+				Hi! Welcome to Aircooled Rescue! In order to contact someone, you'll need to 
+				<a href="#logreg">log in or make an account</a> to see their info. 
+			</div>
+
+		</div>
+
+	{% endif %}
+
+	<div class="row-fluid full">
+		<div class="span3" id="content-col">
+			<div id="person" style="display:none;">
+
+			</div>
+			{% if user.is_authenticated %}
+			<div id="profile" style="display:none;">
+
+			</div>
+			{% endif %}
+			<div id="people-list" style="display:none;">
+				<div id="people-list-controls">
+					<input id="search-people" type="text" placeholder="Search" class="search-query input-medium">
+				</div>
+				<div id="people-list-inner">
+
+				</div>
+			</div>
+
+		</div>
+		<div id="map-col" class="span9">
+			<div id="map-canvas" class="map">
+
+			</div>
+
+		</div>
+	</div>
+</div>
+{% endblock %}

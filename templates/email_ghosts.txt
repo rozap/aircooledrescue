@@ -1,0 +1,12 @@
+Hey {{ username }},
+
+I noticed that you registered at Aircooled rescue but then never updated any of your information. In order to keep the information accurate, it would be great if you could take a minute or so to update it. 
+
+It was brought to my attention that the profile button is hard to find, so there are now intructions on how to edit your profile on the page once you log in. 
+
+You can log in to your account using the following address:
+http://www.aircooledrescue.com/#logreg
+
+If there are any issues, you can reply to this email with a description of the problem. The site is new, so there are bound to be some bugs. 
+
+Thanks!

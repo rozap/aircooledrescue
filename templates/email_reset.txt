@@ -1,0 +1,6 @@
+Hi there {{username}}, 
+
+You can reset your password by going to the following link and entering a new password. 
+http://www.aircooledrescue.com/reset_password/{{key}}
+
+Cheers!
