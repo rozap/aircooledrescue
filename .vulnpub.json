@@ -1,0 +1,10 @@
+{
+	"managed": {
+		"requirements.txt": {
+			"manager": "pypi"
+		},
+		".dpkg.txt": {
+			"manager": "dpkg"
+		}
+	}
+}
